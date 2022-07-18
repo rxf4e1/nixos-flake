@@ -1,0 +1,4 @@
+config/emacs/.secret.*
+config/.authinfo.*
+/result
+.direnv

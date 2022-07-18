@@ -1,0 +1,129 @@
+## Sample initialization file for GNU nano
+## Please note that you must have configured nano with --enable-nanorc
+## for this file to be read!  Also note that characters specially
+## interpreted by the shell should not be escaped here.
+##
+## To make sure a value is not enabled, use "unset <option>"
+##
+## For the options that take parameters, the default value is given.
+## Other options are unset by default.
+
+# set boldtext
+
+## Use auto-indentation
+set autoindent
+
+## Backup files to filename~
+# set backup
+
+## Constantly display the cursor position in the status bar.
+set constantshow
+
+## Use cut to end of line with ^K by default
+# set cutfromcursor
+
+## Set the line length for wrapping text and justifying paragraphs.
+## If fill is negative, the line length will be the screen width less
+## this number.
+##
+set fill 80
+
+## Draw a vertical stripe at the given column, to help
+## judge the width of the text.
+# set guidestripe 80
+
+## Enable ~/.nano_history for saving and reading search/replace strings.
+# set historylog
+
+## Use alternate keypad routines
+# set keypad
+
+## Display line numbers.
+# set linenumbers
+
+## Enable vim-style lock-files for when editing files.
+# set locking
+
+## The opening and closing brackets that can be found by bracket
+## searches.  They cannot contain blank characters.  The former set must
+## come before the latter set, and both must be in the same order.
+##
+set matchbrackets "(<[{)>]}"
+
+##
+# set minibar
+
+## Allow multiple file buffers (using ^R inserts into separate buffer).
+## You must have configured with --enable-multibuffer or --enable-extra
+## for this to work.
+##
+set multibuffer
+
+## Don't convert files from DOS/Mac format
+# set noconvert
+
+## Don't follow symlinks when writing files
+# set nofollow
+
+## Don't display the help lists at the bottom of the screen
+set nohelp
+
+## Don't wrap text at all
+set nowrap
+
+## Set operating directory.  nano will not read or write files outside
+## this directory and its subdirectories.  Also, the current directory
+## is changed to here, so files are inserted from this dir.  A blank
+## string means the operating directory feature is turned off.
+##
+# set operatingdir ""
+
+## Preserve the XON and XOFF keys (^Q and ^S)
+# set preserve
+
+## The email-quote string, used to justify email-quoted paragraphs.
+## This is an extended regular expression if your system supports them,
+## otherwise a literal string.  Default:
+# set quotestr "^([ 	]*[\|>:}#])+"
+## if you have regexps, otherwise:
+# set quotestr "> "
+## You can get old nano quoted-justify behavior via:
+# set quotestr "(> )+"
+
+## Do extended regular expression searches by default
+set regexp
+
+# Use smarthome
+set smarthome
+
+## Use this spelling checker instead of the internal one.  This option
+## does not properly have a default value.
+##
+set speller "aspell -x -c"
+
+## Allow nano to be suspended with ^Z
+# set suspend
+
+## Use this tab size instead of the default; it must be greater than 0
+set tabsize 2
+set tabstospaces
+
+## Save automatically on exit, don't prompt
+# set tempfile
+
+## Disallow file modification, why would you want this in an rc file? ;)
+# set view
+
+## The two single-column characters used to display the first characters
+## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
+## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
+set whitespace ". "
+
+set zap
+
+## Color Setup
+#set titlecolor black,lime
+set statuscolor lime,normal
+#set functioncolor lime,normal
+#set keycolor black,lime
+#set numbercolor black,lime

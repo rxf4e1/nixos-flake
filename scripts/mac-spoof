@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+card=$1
+tmp=$(mktemp)
+
+macchanger $card -s | egrep -oP "[a-zA-Z0-9]{2}:[a-zA-Z0-9]{2}:[^\ ]*" > $tmp
+
+mac1=$(cat $tmp | head -n 1)
+mac2=$(cat $tmp | tail -n 1)
+
+if [ $mac1 = $mac2]; then
+    if [ $(cat /sys/class/net/$card/operstate) = "up" ]; then
+	ip link set $card down
+	macchanger -r $card
+	ip link set $card up
+    else
+	macchanger -r $card
+    fi
+fi
+
