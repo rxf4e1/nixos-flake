@@ -6,5 +6,5 @@
     # onionshare-gui
   ];
 
-  home.file.".authinfo".source = ../../../config/.authinfo.gpg;
+  # home.file.".authinfo".source = ../../../config/.authinfo.gpg;
 }
