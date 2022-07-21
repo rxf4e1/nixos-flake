@@ -72,6 +72,7 @@ in {
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_NONREPARENTING=1
       export BEMENU_BACKEND=wayland
+      export CXXFLAGS="-std=c++17"
     '';
   };
 }

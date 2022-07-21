@@ -9,7 +9,6 @@
     htop
     killall
     poppler
-    poppler-utils
     ripgrep
     xcape
     unzip
