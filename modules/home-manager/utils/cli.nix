@@ -8,7 +8,6 @@
     fd
     htop
     killall
-    poppler
     ripgrep
     xcape
   ];

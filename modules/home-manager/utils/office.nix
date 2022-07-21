@@ -7,5 +7,6 @@
     pcmanfm
     poppler
     zathura
+    zotero
   ];
 }
