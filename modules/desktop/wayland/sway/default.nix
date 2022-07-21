@@ -47,6 +47,7 @@ in {
     wlr-randr
     wdisplays
     qt5.qtwayland
+    bemenu
     wofi
     lxappearance-gtk2
     matcha-gtk-theme
@@ -70,6 +71,7 @@ in {
       export QT_QPA_PLATFORM=wayland-egl;xcb
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_NONREPARENTING=1
+      export BEMENU_BACKEND=wayland
     '';
   };
 }
