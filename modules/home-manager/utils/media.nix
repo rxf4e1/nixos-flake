@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    blender
+    # blender
     feh
     ffmpeg-full
     font-manager

@@ -11,8 +11,6 @@
     poppler
     ripgrep
     xcape
-    unzip
-    zip
   ];
 
   programs = {

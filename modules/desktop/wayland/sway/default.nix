@@ -48,13 +48,12 @@ in {
     wdisplays
     qt5.qtwayland
     bemenu
-    wofi
+    # wofi
     lxappearance-gtk2
     matcha-gtk-theme
     papirus-maia-icon-theme
     capitaine-cursors
     bibata-cursors-translucent
-    pulseaudio
   ];
 
   xdg.portal = {
@@ -72,7 +71,6 @@ in {
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_NONREPARENTING=1
       export BEMENU_BACKEND=wayland
-      export CXXFLAGS="-std=c++17"
     '';
   };
 }

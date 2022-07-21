@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [ 
     brave 
-    luakit 
+    # luakit 
   ];
   
   programs.qutebrowser = {

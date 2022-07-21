@@ -11,7 +11,7 @@
     ./media.nix
     ./notify.nix
     ./office.nix
-    ./rofi.nix
+    # ./rofi.nix
     ./syncthing.nix
   ];
 
