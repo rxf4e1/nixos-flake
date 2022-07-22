@@ -305,7 +305,7 @@
         zstyle ':vcs_info:*' check-for-changes true
         zstyle ':vcs_info:*' unstagedstr '!'
         zstyle ':vcs_info:*' stagedstr '+'
-        zstyle ':vcs_info:git*' formats "%{${fg[cyan]}%}[%{${fg[blue]}%}%b%{${fg[yellow]}%}%m%u%c%{${fg[cyan]}%}]%{$reset_color%}"
+        zstyle ':vcs_info:git*' formats '%{${fg[cyan]}%}[%{${fg[blue]}%}%b%{${fg[yellow]}%}%m%u%c%{${fg[cyan]}%}]%{$reset_color%}'
         zstyle ':prompt:grml:left:setup' items rc change-root path vcs newline percent pre '%F{green}%B'
       '';
       promptInit = "";
