@@ -300,7 +300,7 @@
       enable = true;
       interactiveShellInit = ''
         source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-        zstyle ':prompt:grml:left:items:user' pre '%F{green}%B' newline
+        zstyle ':prompt:grml:left:setup' items rc change-root path vcs newline percent pre '%F{green}%B'
       '';
       promptInit = "";
     };
