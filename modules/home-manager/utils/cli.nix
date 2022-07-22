@@ -30,11 +30,17 @@
     mime.enable = true;
     mimeApps = {
       enable = true;
-      # associations = {
-      #   added = {};
-      #   removed = {};
-      # };
-      # defaultApplications = {};
+      associations = {
+        added = {
+          "application/pdf" = ["zathura.desktop"];
+        };
+        removed = {
+          "application/pdf" = ["brave-browser.desktop"];
+        };
+      };
+      defaultApplications = {
+        "application/pdf" = ["zathura.desktop"];
+      };
     };
   };
 
