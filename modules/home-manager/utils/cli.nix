@@ -14,9 +14,9 @@
 
   xdg = {
     enable = true;
-    cacheHome = "$HOME/.cache";
-    configHome = "$HOME/.config";
-    dataHome = "$HOME/.local/share";
+    # cacheHome = "$HOME/.cache";
+    # configHome = "$HOME/.config";
+    # dataHome = "$HOME/.local/share";
     userDirs = {
       enable = true;
       createDirectories = true;
