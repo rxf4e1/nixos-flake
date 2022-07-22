@@ -12,6 +12,32 @@
     xcape
   ];
 
+  xdg = {
+    enable = true;
+    cacheHome = "$HOME/.cache";
+    configHome = "$HOME/.config";
+    dataHome = "$HOME/.local/share";
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = "$HOME/Desktop";
+      documents = "$HOME/Documents";
+      download = "$HOME/Downloads";
+      pictures = "$HOME/Pictures";
+      publicShare = "$HOME/Public";
+      templates = "$HOME/Templates";
+    };
+    mime.enable = true;
+    mimeApps = {
+      enable = true;
+      # associations = {
+      #   added = {};
+      #   removed = {};
+      # };
+      # defaultApplications = {};
+    };
+  };
+
   programs = {
     direnv = {
       enable = true;
