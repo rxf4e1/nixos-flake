@@ -32,14 +32,14 @@
       enable = true;
       associations = {
         added = {
-          "application/pdf" = ["zathura.desktop"];
+          "application/pdf" = ["org.pwmt.zathura.desktop"];
         };
         removed = {
           "application/pdf" = ["brave-browser.desktop"];
         };
       };
       defaultApplications = {
-        "application/pdf" = ["zathura.desktop"];
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
       };
     };
   };
