@@ -42,6 +42,7 @@
           modules = [
             # System
             ./modules/system/aspire-a315
+            ./modules/desktop
 
             # Home-Manager
             inputs.home-manager.nixosModules.home-manager {
@@ -56,9 +57,9 @@
             } # <<-- End Home-manager Section
 
             # HyprLand WindowManager
-            inputs.hyprland.nixosModules.default { 
-              imports = [ ./modules/desktop ]; 
-	    } 
+            # inputs.hyprland.nixosModules.default { 
+            #   imports = [ ./modules/desktop ]; 
+	          # } 
             # { programs.hyprland.enable = true; }
           ];
         };

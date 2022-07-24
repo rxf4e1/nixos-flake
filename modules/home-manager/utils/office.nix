@@ -6,7 +6,7 @@ let
       wrapfig capt-of preview lxfonts latexmk
       natbib biblatex biblatex-abnt fourier xpatch
       ctex xetex minted fvextra amsmath upquote catchfile
-      xstring framed dvipng;
+      xstring framed dvipng hanging;
   };
   
 in {
