@@ -10,12 +10,12 @@
     flake-utils.url = "github:numtide/flake-utils";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "unstable";
+    # hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.inputs.nixpkgs.follows = "unstable";
   
   };
 # ------------------------------------------------------------------------------
-  outputs = inputs @ {self, unstable, home-manager, hyprland, flake-utils, ... }:
+  outputs = inputs @ {self, unstable, home-manager, emacs-overlay, flake-utils, ... }:
     
     let
       devShells = flake-utils.lib.eachDefaultSystem (
