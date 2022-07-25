@@ -50,7 +50,6 @@
       - [[#scroll][Scroll]]
       - [[#teminals][Teminals]]
       - [[#transient][Transient]]
-      - [[#undo-fu][Undo-Fu]]
       - [[#wich-key][Wich-Key]]
     - [[#window-manager][Window Manager]]
       - [[#dmenu][Dmenu]]
@@ -81,7 +80,6 @@
       - [[#flyspell][flyspell]]
   - [[#org][ORG]]
     - [[#org-mode][org-mode]]
-    - [[#org-capture][org-capture]]
     - [[#org-superstar][org-superstar]]
     - [[#org-toc][org-toc]]
   - [[#others][OTHERS]]
@@ -90,8 +88,8 @@
       - [[#presentation][Presentation]]
       - [[#references][References]]
     - [[#epubpdf][Epub/Pdf]]
-    - [[#denote][Denote]]
     - [[#gkroam][GkRoam]]
+    - [[#eww][Eww]]
   - [[#footer][FOOTER]]
 - [[#references-1][REFERENCES]]
   - [[#literate][LITERATE]]
@@ -104,7 +102,7 @@ i’m really on the right path to find myself into this world. I found
 on ~Org~ literate config and [[https://github.com/conao3/leaf.el][Leaf.el]] by ~conao3~ the base i wanted to keep
 myself really organized. Now i know everything about my config, even
 though i have stolen many snips of code from others configuration and
-adapted it to my workflow.
+adapt it to my workflow.
 * CONFIGURATION
 ** HEADER
 #+begin_src emacs-lisp :tangle yes
@@ -129,7 +127,6 @@ adapted it to my workflow.
     (defconst rx:cache-d    (concat rx:local-d "cache/"))
     (defconst rx:temp-d     (concat rx:local-d "temp/"))
     (defconst rx:snippets-d (concat rx:emacs-d "straight/build/yasnippet-snippets/snippets/"))
-    (defconst rx:skeleton-d (concat rx:local-d "skeletons/"))
     (defconst rx:projects-d (concat rx:cache-d "projects"))
     (defconst rx:org-d      (concat default-directory "Nextcloud/org/")))
 #+end_src
@@ -334,7 +331,6 @@ adapted it to my workflow.
    '(minibuffer-prompt-properties '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt))
    '(eval-expression-print-length        nil)
    '(eval-expression-print-level         nil)
-   '(column-number-mode                  t)
    ;; UTF-8 please
    '(locale-coding-system                'utf-8)
    '(set-terminal-coding-system          'utf-8)
@@ -454,40 +450,27 @@ adapted it to my workflow.
 **** Modeline
 #+begin_src emacs-lisp :tangle yes
   ;; ------------------
-  (straight-use-package 'keycast)
+  (straight-use-package 'mood-line)
+  ;; (straight-use-package 'keycast)
   ;; ------------------
-  (leaf mode-line
-    :doc ""
-    :tag "built-in"
+  (leaf mood-line
+    :doc "A minimal mode-line configuration"
+    :url "https://github.com/jessiehildebrandt/mood-line"
+    :init
+    (progn
+      (mood-line-mode    t)
+      (display-time-mode t))
     :custom
-    (mode-line-percent-position . '(-3 "%p"))
-    (mode-line-position-column-line-format . '(" %l,%c"))
-    (mode-line-compact . nil)
-    (mode-line-format
-     . '("%e" mode-line-front-space
-         ("" mode-line-mule-info mode-line-client mode-line-modified mode-line-remote)
-         mode-line-frame-identification
-         mode-line-buffer-identification
-         "  "
-         mode-line-position
-         "  "
-         (vc-mode vc-mode)
-         ;; mode-line-modes
-         mode-line-misc-info
-         mode-line-end-spaces)))
+    (display-time-24hr-format . t)
+    (display-time-format      . "%H:%M - %d %B %Y"))
 
   (leaf keycast
     :doc ""
     :url ""
-    :init (keycast-mode)
-    :custom
-    (keycast-separator-width . 2)
-    (keycast-mode-line-remove-tail-elements . nil)
-    (keycast-mode-line-insert-after . 'mode-line-buffer-identification)
-    :config
-    (dolist (input '(self-insert-command
-                     org-self-insert-command))
-      (add-to-list 'keycast-substitute-alist `(,input "." "Typing…"))))
+    :disabled t
+    :init
+    (progn
+      (keycast-mode t)))
 #+end_src
 
 **** Themes
@@ -497,19 +480,8 @@ adapted it to my workflow.
                           :type git
                           :host github
                           :repo "nashamri/spacemacs-theme"))
-  ;; (straight-use-package 'modus-themes)
   ;; ------------------
-  ;; (leaf modus-themes
-  ;;   :doc ""
-  ;;   :url ""
-  ;;   :require (modus-themes)
-  ;;   :config (progn
-  ;;           (modus-themes-load-themes)
-  ;;           (modus-themes-load-vivendi))
-  ;;   :bind (("<f5>" . #'modus-themes-toggle)))
-
-  ;; In case i want another good theme, easy on my eyes.
-  (load-theme 'spacemacs-dark t) ;; Dark-Theme
+  (load-theme 'spacemacs-dark t)
 #+end_src
 
 ** MODULES
@@ -579,7 +551,7 @@ adapted it to my workflow.
 #+end_src
 
 ***** helm
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle yes
   ;; ------------------
   (straight-use-package 'helm)
   (straight-use-package 'helm-rg)
@@ -647,219 +619,7 @@ adapted it to my workflow.
      ("C-x b"   . helm-mini)
      ("C-s"     . helm-occur)
      ("C-x C-f" . helm-find-files)
-     ("M-x"     . helm-M-x)
-     (:helm-map
-      ([tab] . helm-execute-persistent-action)
-      ("TAB" . helm-execute-persistent-action)
-      ("C-i" . helm-execute-persistent-action)
-      ("C-a" . helm-select-action))))
-#+end_src
-
-***** brotherhood
-****** vertico
-#+begin_src emacs-lisp :tangle yes
-    ;; ------------------
-    (straight-use-package 'vertico)
-    (straight-use-package 'orderless)
-    ;; ------------------
-    (leaf vertico
-      :doc "vertical completion UI based on the default completion system." 
-      :url "https://github.com/minad/vertico"
-      :init (vertico-mode t)
-      :custom
-      (vertico-scroll-margin . 0)
-      (vertico-count         . 10)
-      (vertico-resize        . nil)
-      (vertico-cycle         . t)
-      :bind (:vertico-map
-             ("?" . minibuffer-completion-help)
-             ("M-RET" . minibuffer-force-complete-and-exit)
-             ("M-TAB" . minibuffer-complete)))
-
-    (leaf orderless ;; TO FIX
-      :doc "divides the pattern into space-separated components."
-      :url "https://github.com/oantolin/orderless"
-      :custom
-      (orderless-component-separator . " +")
-      (completion-styles . '(basic orderless))
-      (completion-category-defaults . nil)
-      (completion-category-overrides
-       . '((file (styles . (basic partial-completion)))
-           (project-file (styles . (basic substring partial-completion orderless)))
-           (imenu (styles . (basic substring orderless)))
-           (kill-ring (styles . (basic substring orderless)))
-           (consult-location (styles . (basic substring orderless))))))
-#+end_src
-
-****** marginalia
-#+begin_src emacs-lisp :tangle yes
-  ;; ------------------
-  (straight-use-package 'marginalia)
-  ;; ------------------
-  (leaf marginalia
-    :doc "marks or annotations placed at the margin of the minibuffer."
-    :url "https://github.com/minad/marginalia"
-    :init
-    (marginalia-mode)
-    :custom
-    (marginalia-max-relative-age . 0))
-#+end_src
-
-****** consult
-#+begin_src emacs-lisp :tangle yes
-  ;; ------------------
-  (straight-use-package 'consult)
-  (straight-use-package 'consult-dir)
-  ;; ------------------
-  (leaf consult
-    :doc "practical commands based on the Emacs completion function."
-    :url "https://github.com/minad/consult"
-    :hook (completion-list-mode-hook . consult-preview-at-point-mode)
-    :custom
-    (register-preview-delay . 0.5)
-    (register-preview-function . #'consult-register-format)
-    (xref-show-xrefs-function . #'consult-xref)
-    (xref-show-definitions-function . #'consult.xref)
-    (consult-narrow-key . "<")
-    :config
-    (consult-customize
-     consult-theme
-     :preview-key '(:debounce 0.2 any)
-     consult-ripgrep consult-git-grep consult-grep
-     consult-bookmark consult-recent-file consult-xref
-     consult--source-bookmark consult--source-recent-file
-     consult--source-project-recent-file
-     :preview-key (kbd "M-."))
-    :bind
-    (("C-c h" . consult-history)
-     ("C-c m" . consult-mode-command)
-     ("C-c k" . consult-kmacro)
-     ;; C-x bindings (ctl-x-map)
-     ("C-x M-:" . consult-complex-command)                                 ;; orig. repeat-complex-command
-     ([remap switch-to-buffer]              . consult-buffer)	       ;; orig. switch-to-buffer
-     ([remap switch-to-buffer-other-window] . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-     ([remap switch-to-buffer-other-frame]  . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-     ([remap bookmark-jump] . consult-bookmark)	                                       ;; orig. bookmark-jump
-     ("C-x p b" . consult-project-buffer)	                               ;; orig. project-switch-to-buffer
-     ;; Other custom bindings
-     ([remap yank-pop] . consult-yank-pop)	                               ;; orig. yank-pop
-     ([remap apropos] . consult-apropos)                                   ;; orig. apropos-command
-     ;; M-g bindings (goto-map)
-     ("M-g e" . consult-compile-error)
-     ("M-g f" . consult-flymake)                      	               ;; Alternative: consult-flycheck
-     ([remap goto-line] . consult-goto-line)                               ;; orig. goto-line
-     ("M-g M-g" . consult-goto-line)                                       ;; orig. goto-line
-     ("M-g o" . consult-outline)	                                       ;; Alternative: consult-org-heading
-     ("M-g m" . consult-mark)
-     ("M-g k" . consult-global-mark)
-     ([remap imenu] . consult-imenu)
-     ("M-g I" . consult-imenu-multi)
-     ;; M-s bindings (search-map)
-     ("M-s d" . consult-find)
-     ("M-s D" . consult-locate)
-     ("M-s g" . consult-grep)
-     ("M-s G" . consult-git-grep)
-     ("M-s r" . consult-ripgrep)
-     ("C-s"   . consult-line)
-     ("M-s L" . consult-line-multi)
-     ([remap multi-occur] . consult-multi-occur)
-     ("M-s k" . consult-keep-lines)
-     ("M-s u" . consult-focus-lines)
-     ;; Isearch integration
-     ("M-s e" . consult-isearch-history)
-     (:isearch-mode-map
-      ("M-e" . consult-isearch-history)
-      ("M-s e" . consult-isearch-history)
-      ("M-s l" . consult-line)
-      ("M-s L" . consult-line-multi))
-     (:minibuffer-local-map
-      ("M-s" . consult-history)
-      ("M-r" . consult-history))))
-
-  (leaf consult-dir
-    :doc ""
-    :url ""
-    :after consult
-    :bind (("C-x C-d" . consult-dir)
-           (:minibuffer-local-completion-map
-            ("C-x C-d" . consult-dir)
-            ("C-x C-j" . consult-dir-jump-file))))
-#+end_src
-
-****** embark
-#+begin_src emacs-lisp :tangle yes
-  ;; ------------------
-  (straight-use-package 'embark)
-  (straight-use-package 'embark-consult)
-  (straight-use-package 'citar-embark)
-  ;; ------------------
-  (leaf embark
-    :doc "makes it easy to choose a command to run based on what is near point."
-    :url "https://github.com/oantolin/embark"
-    :bind (("C-." . embark-act)
-           ("C-;" . embark-dwin)
-           ("C-h b" . embark-bindings))
-    :config
-    (setq embark-action-indicator
-            (lambda (map &optional _target)
-              (which-key--show-keymap "Embark" map nil nil 'no-paging)
-              #'which-key--hide-popup-ignore-command)
-            embark-become-indicator embark-action-indicator)
-      ;; Hide the mode line of the Embark live/completions buffers
-      (add-to-list 'display-buffer-alist
-                   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                     nil
-                     (window-parameters (mode-line-format . none))))
-      (defun embark-which-key-indicator ()
-    "An embark indicator that displays keymaps using which-key.
-  The which-key help message will show the type and value of the
-  current target followed by an ellipsis if there are further
-  targets."
-    (lambda (&optional keymap targets prefix)
-      (if (null keymap)
-          (which-key--hide-popup-ignore-command)
-        (which-key--show-keymap
-         (if (eq (plist-get (car targets) :type) 'embark-become)
-             "Become"
-           (format "Act on %s '%s'%s"
-                   (plist-get (car targets) :type)
-                   (embark--truncate-target (plist-get (car targets) :target))
-                   (if (cdr targets) "…" "")))
-         (if prefix
-             (pcase (lookup-key keymap prefix 'accept-default)
-               ((and (pred keymapp) km) km)
-               (_ (key-binding prefix 'accept-default)))
-           keymap)
-         nil nil t (lambda (binding)
-                     (not (string-suffix-p "-argument" (cdr binding))))))))
-
-  (setq embark-indicators
-    '(embark-which-key-indicator
-      embark-highlight-indicator
-      embark-isearch-highlight-indicator))
-
-  (defun embark-hide-which-key-indicator (fn &rest args)
-    "Hide the which-key indicator immediately when using the completing-read prompter."
-    (which-key--hide-popup-ignore-command)
-    (let ((embark-indicators
-           (remq #'embark-which-key-indicator embark-indicators)))
-        (apply fn args)))
-
-  (advice-add #'embark-completing-read-prompter
-              :around #'embark-hide-which-key-indicator))
-
-  (leaf embark-consult
-    :doc ""
-    :url ""
-    :after (embark consult)
-    :hook (embark-collect-mode-hook . consult-preview-at-point-mode))
-
-  (leaf citar-embark
-    :doc ""
-    :url ""
-    :after citar embark
-    :config
-    (citar-embark-mode))
+     ("M-x"     . helm-M-x)))
 #+end_src
 
 **** Text Completion:
@@ -879,12 +639,11 @@ adapted it to my workflow.
     (completion-style         . '(basic))
     (corfu-echo-documentation . nil)
     (corfu-quit-at-boundary   . t)
-    (corfu-separator          . ?\s)
     (corfu-quit-no-match      . t)
     (corfu-cycle              . t)
     (corfu-auto               . t)
-    (corfu-auto-delay         . 1)
-    (corfu-auto-prefix        . 2)
+    (corfu-auto-delay         . 0)
+    (corfu-auto-prefix        . 0)
     (corfu-scroll-margin      . 5))
 
   (leaf cape
@@ -1084,13 +843,24 @@ adapted it to my workflow.
      ("w"       . wdired-change-to-wdired-mode)
      ("<M-RET>" . dired-open-file)))
 
+  ;; (defun dired-open-file ()
+  ;;   "In dired, open the file named on this line."
+  ;;   (interactive)
+  ;;   (let* ((file (dired-get-filename nil t)))
+  ;;     (message "Opening %s..." file)
+  ;;     (call-process "xdg-open" nil 0 nil file)
+  ;;     (message "Opening %s done" file)))
+
   (defun dired-open-file ()
-    "In dired, open the file named on this line."
     (interactive)
-    (let* ((file (dired-get-filename nil t)))
-      (message "Opening %s..." file)
-      (call-process "xdg-open" nil 0 nil file)
-      (message "Opening %s done" file)))
+    (setq file (dired-get-file-for-visit))
+    (setq ext (file-name-extension file))
+    (cond ((string= ext "pdf")
+           ;; shell-quote-argument escapes white spaces on the file name
+           (async-shell-command (concat "zathura " (shell-quote-argument file))))
+          ((string= ext "epub")
+           (async-shell-command (concat "zathura " (shell-quote-argument file))))
+          (t (dired-find-file))))
 #+end_src
 
 **** Easy-Kill
@@ -1239,7 +1009,7 @@ adapted it to my workflow.
 #+end_src
 
 ***** electric-pair
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle yes
   ;; ------------------
   ;; ------------------
   (leaf electric
@@ -1247,14 +1017,9 @@ adapted it to my workflow.
     :tag "built-in"
     :init
     (show-paren-mode      t)
-    (electric-pair-mode   nil)
-    (electric-indent-mode nil)
+    (electric-pair-mode   t)
+    (electric-indent-mode t)
     (electric-quote-mode  nil)
-    :hook ((text-mode-hook
-            lua-mode-hook
-            web-mode-hook
-            nxml-mode-hook
-            json-mode-hook) . electric-indent-local-mode)
     :custom
     (electric-quote-context-sensitive   . t)
     (electric-quote-paragraph           . t)
@@ -1263,7 +1028,6 @@ adapted it to my workflow.
     (show-paren-style                   . 'parenthesis)
     (show-paren-when-point-in-periphery . nil)
     (show-paren-when-point-inside-paren . nil)
-    ;; (show-paren--context-when-offscreen . 'child-frame) ; Emacs 29
     (electric-pair-preserve-balance     . t)
     (electric-pair-skip-whitespace      . nil)
     (electric-pair-skip-self . 'electric-pair-default-skip-self)
@@ -1282,29 +1046,14 @@ adapted it to my workflow.
   (leaf lispy
     :doc "A popular method to navigate and edit LISP code in Emacs"
     :url "https://github.com/abo-abo/lispy"
+    :disabled t
     :hook
     (emacs-lisp-mode-hook
      scheme-mode-hook
-     geiser-mode-hook
      lisp-mode-hook
      sly-mode-hook
      clojure-mode-hook
      cider-mode-hook))
-#+end_src
-
-***** smartparens
-#+begin_src emacs-lisp :tangle yes
-  ;; ------------------
-  (straight-use-package 'smartparens)
-  ;; ------------------
-  (leaf smartparens
-    :doc ""
-    :url "https://github.com/Fuco1/smartparens"
-    :require (smartparens-config)
-    ;; :init (smartparens-global-mode)
-    :hook (prog-mode-hook . smartparens-mode)
-    :custom
-    (smartparens-strict-mode . t))
 #+end_src
 
 **** Projects
@@ -1457,16 +1206,18 @@ adapted it to my workflow.
     (transient-mode-line-format . nil))
 #+end_src
 
-**** Undo-Fu
+**** Undo-Tree
 #+begin_src emacs-lisp :tangle yes
   ;; ------------------
-  (straight-use-package 'undo-fu)
+  (straight-use-package 'undo-tree)
   ;; ------------------
-  (leaf undo-fu
+  (leaf undo-tree
     :doc ""
     :url ""
-    :bind (("C-z"   . undo-fu-only-undo)
-           ("C-S-z" . undo-fu-only-redo)))
+    :init (global-undo-tree-mode)
+    :custom
+    (undo-tree-visualizer-timestamps . t)
+    (undo-tree-visualizer-diff       . t))
 #+end_src
 
 **** Wich-Key
@@ -1807,7 +1558,6 @@ adapted it to my workflow.
     :doc "An autonomous emacs major-mode for editing web templates."
     :url "https://web-mode.org/"
     :custom
-    (skeleton-pair                               . t)
     (web-mode-code-indent-offset                 . 2)
     (web-mode-css-indent-offset                  . 2)
     (web-mode-markup-indent-offset               . 2)
@@ -1825,11 +1575,7 @@ adapted it to my workflow.
      "\\.tsx\\'"
      "\\.ejs\\'"
      "\\.hbs\\'"
-     "\\.json\\'")
-    ;; :bind
-    ;; (:web-mode-map
-    ;;  ("<" . skeleton-pair-insert-maybe))
-    )
+     "\\.json\\'"))
 #+end_src
 
 **** TODO haskell
@@ -1850,7 +1596,7 @@ adapted it to my workflow.
 #+begin_src emacs-lisp :tangle yes
   ;; ------------------
   (straight-use-package 'nix-mode)
-  ;; (straight-use-package 'helm-nixos-options)
+  (straight-use-package 'helm-nixos-options)
   ;; ------------------
   (leaf nix-mode
     :doc "An Emacs major mode for editing Nix expressions"
@@ -1861,7 +1607,6 @@ adapted it to my workflow.
   (leaf helm-nixos-options
     :doc "A set of useful Emacs modes and functions for users of Nix and NixOS"
     :url "https://github.com/travisbhartwell/nix-emacs"
-    :disabled t
     :config
     (progn
       (setq flycheck-command-wrapper-function
@@ -1944,13 +1689,7 @@ adapted it to my workflow.
 
 **** markdown
 #+begin_src emacs-lisp :tangle no
-  ;; ------------------
-  (straight-use-package 'markdown-mode)
-  ;; ------------------
-  (leaf markdown-mode
-    :doc ""
-    :url "https://jblevins.org/projects/markdown-mode/"
-    :mode ("\\.\\(?:md\\|markdown\\|mkd\\)\\'" . markdown-mode))
+
 #+end_src
 
 **** yaml
@@ -2031,7 +1770,7 @@ adapted it to my workflow.
   (leaf org
     :doc ""
     :tag ""
-    :require ox
+    :require (ox ob-js)
     :custom
     (org-directory                     . rx:org-d)
     ;; general settings
@@ -2066,8 +1805,7 @@ adapted it to my workflow.
       (org-babel-do-load-languages
        'org-babel-load-languages '((emacs-lisp . t)
                                    (shell      . t)
-                                   ;; (latex      . t)
-                                   ;; (js         . t)
+                                   (js         . t)
                                    (scheme     . t)
                                    (dot        . t))))
     :hook
@@ -2113,7 +1851,7 @@ adapted it to my workflow.
 #+end_src
 
 *** org-toc
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
   ;; ------------------
   (straight-use-package 'toc-org)
   ;; ------------------
@@ -2128,7 +1866,7 @@ adapted it to my workflow.
 ** OTHERS
 *** Academic
 **** Export
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
   ;; ------------------
   (straight-use-package 'ox-epub)
   ;; ------------------
@@ -2146,18 +1884,10 @@ adapted it to my workflow.
     (org-latex-listings                . t)
     (org-latex-listings                . 'minted)
     (org-latex-pdf-process
-     . '("latexmk -shell-escape -bibtex -f -pdf %f"
-         "bibtex %b"
-         "pdflatex -interaction nonstopmode -output-directory %o %f"
-         "pdflatex -interaction nonstopmode -output-directory %o %f"))
-    :config
-    (add-to-list 'org-latex-packages-alist
-                 '("AUTO" "babel" t ("pdflatex")))
-    (add-to-list 'org-latex-packages-alist
-                 '("AUTO" "polyglossia" t ("xelatex" "lualatex"))))
+     . '("latexmk -shell-escape -bibtex -f -pdf %f")))
 #+end_src
 
-**** Presentation
+**** TODO Presentation
 #+begin_src emacs-lisp :tangle no
   ;; ------------------
   ;; (straight-use-package ')
@@ -2166,7 +1896,7 @@ adapted it to my workflow.
 
 **** References
 ***** bibtex
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle yes
   ;; ------------------
   (straight-use-package 'helm-bibtex)
   ;; ------------------
@@ -2183,9 +1913,9 @@ adapted it to my workflow.
     (bibtex-completion-pdf-field    . "file")
     (bibtex-completion-pdf-symbol   . "⌘")
     (bibtex-completion-notes-symbol . "✎")
-    (bibtex-completion-library-path . '("~/Zotero/storage/2I6J8Q2M"))
-    (bibtex-completion-bibliography . '("~/Zotero/exports/ref.bib"))
-    (bibtex-completion-notes-path   . "~/Zotero/notes"))
+    (bibtex-completion-library-path . '("~/Library"))
+    (bibtex-completion-bibliography . '("~/Library/references.bib"))
+    (bibtex-completion-notes-path   . '("~/Library/notes")))
 #+end_src
 
 ***** citar
@@ -2202,23 +1932,27 @@ adapted it to my workflow.
     :doc "BibTeX, BibLaTeX, and CSL JSON bibliographic data, and LaTeX, markdown, and org-cite editing support."
     :url "https://github.com/bdarcus/citar"
     :custom
-    (org-cite-global-bibliography . '("~/Zotero/exports/ref.bib"))
+    (org-cite-global-bibliography . '("~/Documents/Zotero/exports/ref.bib"))
     (citar-bibliography           . org-cite-global-bibliography)
-    (org-cite-insert-processor    . 'citar)
-    (org-cite-follow-processor    . 'citar)
-    (org-cite-activate-processor  . 'citar)
-    (org-cite-export-processor    . '((latex . biblatex)
-                                      ;; (latex . (csl "associacao-brasileira-de-normas-tecnicas.csl"))
+    (org-cite-export-processor    . '((latex . (csl "associacao-brasileira-de-normas-tecnicas.csl"))
                                       (md    . (csl "associacao-brasileira-de-normas-tecnicas.csl"))
                                       (odt   . (csl "associacao-brasileira-de-normas-tecnicas.csl"))
-                                      (t     . (csl "modern-language-association.cls"))))
+                                      (t     . (csl "modern-language-association.cls"))
+                                      ;; (latex . biblatex)
+                                      ))
     :bind
-    (("C-c r i" . org-cite-insert)
-     ("C-c r c" . citar-insert-citation)
-     ("C-c r r" . citar-insert-reference)
-     ("C-c r n" . citar-open-note)
+    (("C-c x c" . citar-insert-citation)
+     ("C-c x r" . citar-insert-reference)
+     ("C-c x n" . citar-open-note)
      (:minibuffer-local-map
       ("M-b" . citar-insert-preset))))
+
+  (leaf citar-org
+    :after oc
+    :custom
+    (org-cite-insert-processor    . 'citar)
+    (org-cite-follow-processor    . 'citar)
+    (org-cite-activate-processor  . 'citar))
 #+end_src
 
 ***** org-ref
@@ -2236,9 +1970,7 @@ adapted it to my workflow.
      org-ref-bibtex
      org-ref-isbn
      org-ref-pubmed
-     org-ref-scopus
      org-ref-url-utils
-     org-ref-wos
      doi-utils)
     :custom
     (org-ref-insert-link-function  . 'org-ref-insert-link-hydra/body)
@@ -2246,12 +1978,12 @@ adapted it to my workflow.
     (org-ref-insert-label-function . 'org-ref-insert-label-link)
     (org-ref-insert-ref-function   . 'org-ref-insert-ref-link)
     (org-ref-cite-onclick-function . (lambda (_) (org-ref-citation-hydra/body)))
-    :bind (("C-c r h" . 'org-ref-insert-link-hydra/body)
-           ("C-c r i" . 'org-ref-insert-link)))
+    :bind
+    ("C-c C-]" . 'org-ref-insert-link-hydra/body))
 #+end_src
 
 *** Epub/Pdf
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
   ;; ------------------
   (straight-use-package 'nov)
   (straight-use-package 'pdf-tools)
@@ -2297,8 +2029,8 @@ adapted it to my workflow.
       :hook ((find-file-hook . denote-link-buttonize-buffer)
              (dired-mode-hook . denote-dired-mode))
       :custom
-      (denote-directory . "~/Library/Zettel") ; prefer to use .dir-locals.el file.
-      (denote-known-keywords . '("biology" "politics" "economics"))
+      (denote-directory . "~/Library/notes") ; prefer to use .dir-locals.el file.
+      (denote-known-keywords . '("biology" "politics" "economics" "nixos" "emacs"))
       (denote-file-type . nil)
       :bind
       (("C-c n j" . my-denote-journal)
@@ -2371,5 +2103,6 @@ adapted it to my workflow.
 
 ** SINGLE
 - https://github.com/olivertaylor/dotfiles/tree/2bd57060c6823712ecaa08748aca910289c9cfb8/emacs
+
 
 
