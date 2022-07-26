@@ -2,37 +2,17 @@
 
 {
   # imports = [
+  #   ./hardware-configuration.nix
   #   ./pkgs/macspoof.nix
   # ];
 
 
   # Use the systemd-boot EFI boot loader.
   boot = { 
-    supportedFilesystems = [ "btrfs" ];
     loader = {
-      # systemd-boot.enable = true;
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        version = 2;
-        device = "nodev";
-        efiSupport = true;
-        enableCryptodisk = true;
-      };
     };
-    
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
-      kernelModules = [ "dm-snapshot" ];
-      supportedFilesystems = [ "btrfs" ];
-      luks.devices = {
-        crypted = {
-          device = "/dev/disk/by-partuuid/7074f946-6034-406b-b6e7-8186214ee3aa";
-	        allowDiscards = true;
-	        preLVM = true;
-        };
-      };
-    }; # <<-- End Initrd
     
     blacklistedKernelModules = [
       "kvm_intel"
@@ -143,22 +123,23 @@
   console = {
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
+    # useXkbConfig = true; # use xkbOptions in tty
   };
   
   environment = {
     systemPackages = with pkgs; [
       (aspellWithDicts (ps: with ps; [en pt_BR]))
       curl gitFull wget
-      cacert cargo nanorc zsh
+      cacert cargo zsh
       binutils coreutils dnsutils
       inetutils pciutils usbutils
       acpi lm_sensors pstree
       gnupg gnumake
       rlwrap autoconf cmake ctags 
       gcc guile perl
-      unzip zip zlib.dev
+      unzip zip
       vulkan-headers vulkan-loader vulkan-tools
-      cachix patchelf 
+      cachix 
       nix-prefetch-git nix-index
       nixpkgs-fmt nix-tree rnix-lsp
     ];
@@ -178,16 +159,17 @@
   fonts = {
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "RobotoMono"
-        ];
-      })
+      #(nerdfonts.override {
+      #  fonts = [
+      #    "RobotoMono"
+      #  ];
+      #})
       dejavu_fonts
       emacs-all-the-icons-fonts
       fira-code
       fira-code-symbols
       liberation_ttf
+      overpass
       terminus_font
     ];
   }; # <<-- End fonts Section
@@ -196,7 +178,7 @@
   
   hardware = {
     cpu.amd.updateMicrocode = true;
-    enableRedistributableFirmware = true;
+    # enableRedistributableFirmware = true;
     opengl = {
       enable = true;
       setLdLibraryPath = true;
@@ -315,13 +297,13 @@
       uid = 1000;
       group = "users";
       extraGroups = [
-	      "wheel" 
-	      "video" 
-	      "audio"
-	      "input"
-	      "disk"
-	      "kvm"
-	      "adbusers"
+        "wheel" 
+	"video" 
+	"audio"
+	"input"
+	"disk"
+	"kvm"
+	"adbusers"
         "libvirtd"
       ];
       shell = pkgs.zsh;
@@ -331,7 +313,7 @@
 
   system = {
     # autoUpgrade.channel = https://nixos.org/channels/nixos-22.05;
-    stateVersion = "22.11"; # Did you read the comment?
+    stateVersion = "22.05"; # Did you read the comment?
   };
   
 }
