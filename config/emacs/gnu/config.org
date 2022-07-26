@@ -464,8 +464,12 @@ adapted it to my workflow.
     (mode-line-position-column-line-format . '(" %l,%c"))
     (mode-line-compact . nil)
     (mode-line-format
-     . '("%e" mode-line-front-space
-         ("" mode-line-mule-info mode-line-client mode-line-modified mode-line-remote)
+     . '("%e"
+         mode-line-front-space
+         mode-line-mule-info
+         mode-line-client
+         mode-line-modified
+         mode-line-remote
          mode-line-frame-identification
          mode-line-buffer-identification
          "  "
@@ -485,6 +489,18 @@ adapted it to my workflow.
     (keycast-mode-line-remove-tail-elements . nil)
     (keycast-mode-line-insert-after . 'mode-line-buffer-identification)
     :config
+    (with-eval-after-load 'keycast
+      (define-minor-mode keycast-mode
+        "Show current command and its key binding in the mode line."
+        :global t
+        (if keycast-mode
+            (add-hook 'pre-command-hook 'keycast--update t)
+          (remove-hook 'pre-command-hook 'keycast--update))
+        (dolist (input '(self-insert-command
+                         org-self-insert-command))
+          (add-to-list 'keycast-substitute-alist `(,input "." "Typing…"))))
+      (add-to-list 'global-mode-string '("" keycast-mode-line " ")))
+    (keycast-mode)
     (dolist (input '(self-insert-command
                      org-self-insert-command))
       (add-to-list 'keycast-substitute-alist `(,input "." "Typing…"))))
