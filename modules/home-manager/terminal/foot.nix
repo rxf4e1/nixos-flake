@@ -9,7 +9,7 @@
       main = {
         term = "screen-256color";
         
-        font = "RobotoMono Nerd Font Mono:size=9";
+        font = "Overpass Mono:size=9";
         dpi-aware = "yes";
       };
 
