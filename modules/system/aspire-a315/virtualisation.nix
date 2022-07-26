@@ -5,8 +5,10 @@
     enable = true;
     onBoot = "ignore";
     onShutdown = "shutdown";
-    qemuOvmf = true;
-    qemuRunAsRoot = false;
+    qemu = {
+      ovmf.enable = true;
+      runAsRoot = false;
+    };
   };
 
   # Add binaries to the path
