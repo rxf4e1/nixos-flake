@@ -1,10 +1,11 @@
 { config, pkgs, inputs, ... }:
 
 {
-  # imports = [
+  imports = [
   #   ./hardware-configuration.nix
   #   ./pkgs/macspoof.nix
-  # ];
+    ./virtualisation.nix
+  ];
 
 
   # Use the systemd-boot EFI boot loader.

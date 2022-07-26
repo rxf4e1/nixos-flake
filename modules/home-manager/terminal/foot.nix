@@ -9,7 +9,7 @@
       main = {
         term = "screen-256color";
         
-        font = "Overpass Mono:size=9";
+        font = "Terminus:size=9";
         dpi-aware = "yes";
       };
 
