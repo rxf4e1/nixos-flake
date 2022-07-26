@@ -9,7 +9,7 @@
       main = {
         term = "screen-256color";
         
-        font = "Terminus:size=9";
+        font = "Terminus:size=10";
         dpi-aware = "yes";
       };
 

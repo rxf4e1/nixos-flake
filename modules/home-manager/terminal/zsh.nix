@@ -20,25 +20,25 @@
         l = "ls -lF --time-style=long-iso --grid --icons";
         la = "ls -lha";
         tree = "ls --tree";
-        x = "Hyprland"; # "sway" "startx"
+        x = "sway";
       };
       shellGlobalAliases = {
         G = "| egrep -e";
       };
       dirHashes = {
         dl = "$HOME/Downloads";
-        cf = "/persist/data/00-09-configs/01-NixOS";
+        cf = "/media/data/00-09-configs/01-NixOS";
       };
       sessionVariables = {
         BROWSER="brave";
         EDITOR="nano";
-        VISUAL="emacsclient -c -a '' '$@'";
+        VISUAL="emacs";
         PAGER="less";
       };
       initExtra = ''
-	    export PATH=$HOME/.yarn/bin:$HOME/.local/bin:$PATH
-	    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-	    export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border --margin=1 --padding=1"
+        export PATH=$HOME/.yarn/bin:$HOME/.local/bin:$PATH
+        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+        export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border --margin=1 --padding=1"
         export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
       '';
   };
