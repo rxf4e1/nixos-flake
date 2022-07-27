@@ -103,7 +103,7 @@
       wlp3s0.useDHCP = true;
     };
     firewall = {
-      enable = lib.mkDefault.false;
+      enable = false;
       # allowedTCPPorts = [ ... ];
       # allowedUDPPorts = [ ... ];
     };
