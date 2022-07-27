@@ -211,6 +211,8 @@
 
   services = {
     acpid.enable = true;
+    avahi.nssmdns = true;
+
     blueman.enable = true;
     dbus = {
       enable = true;
