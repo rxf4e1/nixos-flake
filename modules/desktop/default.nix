@@ -3,8 +3,8 @@
 {
 
   imports = [
-    ./wayland
-    # ./x11
+    # ./wayland
+    ./x11
   ];
  
 }

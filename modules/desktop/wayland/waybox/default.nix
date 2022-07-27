@@ -34,7 +34,7 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      dbus-sway-environment
+      dbus-waybox-environment
       configure-gtk
       brightnessctl
       waybox
@@ -61,7 +61,7 @@ in {
       SDL_VIDEODRIVER = "wayland";
       QT_QPA_PLATFORM = "wayland-egl;xcb";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      _JAVA_AWT_NONREPARENTING = 1;
+      _JAVA_AWT_NONREPARENTING = "1";
       BEMENU_BACKEND = "wayland";
     };
   };
