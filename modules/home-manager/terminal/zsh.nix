@@ -27,7 +27,7 @@
       };
       dirHashes = {
         dl = "$HOME/Downloads";
-        cf = "/media/data/00-09-configs/01-NixOS";
+        cf = "/media/data/00-09-config/01-NixOS";
       };
       sessionVariables = {
         BROWSER="brave";

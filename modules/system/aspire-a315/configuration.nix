@@ -88,15 +88,15 @@
   networking = {
     hostId = "d34db33f";
     hostName = "aspire-a315";  # Define your hostname.
+    nameservers = ["1.1.1.1"];
     wireless = {
       enable = true;  # Enables wireless support via wpa_supplicant.
       networks = {
-	      obscurus = {
-	        priority = 1;
-	        authProtocols = [ "WPA-PSK" ];
-	        # psk = "";
-	        pskRaw = "9f158db5874de90a985a802a62197624eed01ac791d7c91181c8d3fd6e7fd2ab";
-	      };
+        obscurus = {
+          priority = 1;
+          authProtocols = [ "WPA-PSK" ];
+          pskRaw = "9f158db5874de90a985a802a62197624eed01ac791d7c91181c8d3fd6e7fd2ab";
+        };
       };
     };
     useDHCP = false;
