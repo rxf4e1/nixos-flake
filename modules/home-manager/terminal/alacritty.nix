@@ -7,9 +7,9 @@
       # background_opacity = 0.96;
       font = {
         size = 10.0;
-        normal.family = "DejaVuSansMono Nerd Font Mono";
-        bold.family = "DejaVuSansMono Nerd Font Mono";
-        italic.family = "DejaVuSansMono Nerd Font Mono";
+        normal.family = "Terminus";
+        bold.family = "Terminus";
+        italic.family = "Terminus";
       };
       cursor.style = {
         shape = "Block";
