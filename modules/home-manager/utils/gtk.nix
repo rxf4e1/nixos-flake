@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     glib
-    lxappearance-gtk2
+    lxappearance
     matcha-gtk-theme
     papirus-maia-icon-theme
     capitaine-cursors

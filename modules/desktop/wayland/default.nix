@@ -2,7 +2,7 @@
 { 
   imports = [
     # ./hypr
-    ./sway
-    # ./waybox
+    # ./sway
+    ./waybox
   ];
 }
