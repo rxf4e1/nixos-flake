@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -43,10 +43,8 @@
     };
     
     extraModulePackages = [ ];
-    
     tmpOnTmpfs = false;
     cleanTmpDir = true;
-    
   }; # <<-- End Boot Section
 
   nix = {
@@ -87,10 +85,10 @@
 
   networking = {
     hostId = "d34db33f";
-    hostName = "aspire-a315";  # Define your hostname.
+    hostName = "aspire-a315";
     nameservers = ["1.1.1.1"];
     wireless = {
-      enable = true;  # Enables wireless support via wpa_supplicant.
+      enable = true;
       networks = {
         obscurus = {
           priority = 1;
@@ -105,7 +103,7 @@
       wlp3s0.useDHCP = true;
     };
     firewall = {
-      enable = false;
+      enable = lib.mkDefault.false;
       # allowedTCPPorts = [ ... ];
       # allowedUDPPorts = [ ... ];
     };
@@ -179,7 +177,6 @@
   
   hardware = {
     cpu.amd.updateMicrocode = true;
-    # enableRedistributableFirmware = true;
     opengl = {
       enable = true;
       setLdLibraryPath = true;
@@ -238,19 +235,13 @@
     };
 
     tlp.enable = true;
-
     printing.enable = false;
-
     journald.extraConfig = "SystemMaxUse=256M";
 
     xserver = {
       enable = true;
       displayManager.startx.enable = true;
       videoDrivers = [ "amdgpu" ];
-      # deviceSection = ''
-      #   Option ""
-      #   Option "" ""
-      # '';
       # useGlamor = true;
       layout = "br";
       xkbVariant = "abnt2";
@@ -302,12 +293,12 @@
       group = "users";
       extraGroups = [
         "wheel" 
-	"video" 
-	"audio"
-	"input"
-	"disk"
-	"kvm"
-	"adbusers"
+        "video"
+        "audio"
+        "input"
+        "disk"
+        "kvm"
+        "adbusers"
         "libvirtd"
       ];
       shell = pkgs.zsh;
@@ -316,8 +307,7 @@
   }; 
 
   system = {
-    # autoUpgrade.channel = https://nixos.org/channels/nixos-22.05;
-    stateVersion = "22.05"; # Did you read the comment?
+    stateVersion = "22.05";
   };
   
 }
