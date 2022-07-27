@@ -8,7 +8,7 @@
   services.syncthing = {
     enable = true;
     user = "rxf4el";
-    dataDir = "$HOME/Documents/Syncthing";
+    dataDir = "/home/rxf4el/Documents/Syncthing";
     # configDir = "$HOME/.config/Syncthing";
   };
 }
