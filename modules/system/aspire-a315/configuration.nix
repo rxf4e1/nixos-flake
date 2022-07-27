@@ -274,7 +274,7 @@
     };
 
   }; # <<-- End services Section
-  
+
   programs = {
     adb.enable = true;
     dconf.enable = true;
@@ -285,8 +285,8 @@
       enable = true;
       interactiveShellInit = ''
         source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-        zstyle ':prompt:grml:left:setup' items rc change-root path vcs newline percent pre '%F{green}%B'
-      '';
+        # zstyle ':prompt:grml:left:setup' items rc change-root path vcs newline percent pre '%F{green}%B'
+        zstyle ':prompt:grml:left:setup' items rc change-root path vcs newline percent
       promptInit = "";
     };
     
