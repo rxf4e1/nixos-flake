@@ -7,13 +7,13 @@
   ];
     
   services.dunst = {
-    enable = false;
-    waylandDisplay = "WAYLAND_DISPLAY";
+    enable = true;
+    # waylandDisplay = "WAYLAND_DISPLAY";
     settings = {
       global = {
         transparency = 10;
         origin = "top-right";
-        font = "Roboto 10";
+        font = "Terminus 10";
       };
       urgency_normal = {
         timeout = 0;
@@ -24,7 +24,7 @@
   # home.file."dustrc".source = "${XDG_CONFIG_HOME}/dunst/dunstrc";
 
   programs.mako = {
-    enable = true;
+    enable = false;
     package = pkgs.mako;
     actions = true;
     anchor = "bottom-right";
@@ -33,7 +33,7 @@
     borderRadius = 5;
     borderSize = 2;
     defaultTimeout = 0;
-    font = "Roboto 10";
+    font = "Terminus 10";
     # format = "";
     # groupBy = "";
     # height = 200;
