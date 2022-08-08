@@ -10,6 +10,7 @@
     gimpPlugins.gmic
     imagemagickBig
     yt-dlp
+    lutris
   ];
 
   programs = {
