@@ -15,9 +15,9 @@ in {
     # libreoffice-bin
     # onlyoffice-bin
     pcmanfm
-    mupdf
+    # mupdf
     poppler
-    zathura
+    # zathura
     zotero
   ];
 }
