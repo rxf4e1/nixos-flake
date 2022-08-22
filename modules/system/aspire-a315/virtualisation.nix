@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  security.poolkit.enable = true;
+
   virtualisation.libvirtd = {
     enable = true;
     onBoot = "ignore";

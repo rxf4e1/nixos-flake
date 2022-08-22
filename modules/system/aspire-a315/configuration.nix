@@ -83,10 +83,6 @@
     overlays = [ inputs.emacs-overlay.overlay ];
   }; # <<-- End Nixpkgs Section
 
-  security = {
-    poolkit.enable = true;
-  };
-
   networking = {
     hostId = "d34db33f";
     hostName = "aspire-a315";
