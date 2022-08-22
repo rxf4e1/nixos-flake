@@ -11,10 +11,11 @@ let
   
 in {
   home.packages = with pkgs; [
-    latex
+    # latex
     # libreoffice-bin
     # onlyoffice-bin
     pcmanfm
+    mupdf
     poppler
     zathura
     zotero

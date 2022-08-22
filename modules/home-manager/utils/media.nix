@@ -10,10 +10,10 @@
     gimpPlugins.gmic
     imagemagickBig
     yt-dlp
-    lutris
-    wine64
-    wine64Packages.fonts
-    winetricks
+    # lutris
+    # wine64
+    # wine64Packages.fonts
+    # winetricks
   ];
 
   programs = {
