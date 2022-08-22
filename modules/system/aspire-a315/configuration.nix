@@ -84,7 +84,7 @@
   }; # <<-- End Nixpkgs Section
 
   security = {
-    poolkit.enable = tue;
+    poolkit.enable = true;
   };
 
   networking = {
