@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  security.poolkit.enable = true;
+  security.polkit.enable = true;
 
   virtualisation.libvirtd = {
     enable = true;
