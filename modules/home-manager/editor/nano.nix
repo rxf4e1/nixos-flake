@@ -2,6 +2,6 @@
 
 {
 
-  home.file.".nanorc".source = ../../../config/nanorc;
+  # home.file.".nanorc".source = ../../../config/nanorc;
   
 }
