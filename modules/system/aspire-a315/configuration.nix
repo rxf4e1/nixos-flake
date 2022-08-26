@@ -173,7 +173,10 @@
     ];
   }; # <<-- End fonts Section
 
-  sound.enable = true;
+  sound = {
+    enable = true;
+    mediaKeys.enable = true;
+  };
   
   hardware = {
     cpu.amd.updateMicrocode = true;
@@ -208,9 +211,19 @@
 
   services = {
     acpid.enable = true;
-    avahi.nssmdns = true;
+    auto-cpufreq.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        userServices = true;
+      };
+    };
 
     blueman.enable = true;
+
     dbus = {
       enable = true;
       packages = with pkgs; [ dconf ];
@@ -219,6 +232,8 @@
     # flatpak = {
     #   enable = true;
     # };
+
+    #logind.lidSwitch = "ignore";            # Laptop does not go to sleep when lid is closed
 
     openssh = {
       enable = true;
@@ -235,7 +250,9 @@
     };
 
     tlp.enable = true;
+
     printing.enable = false;
+
     journald.extraConfig = "SystemMaxUse=256M";
 
     xserver = {
