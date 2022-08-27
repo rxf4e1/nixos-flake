@@ -27,7 +27,7 @@ in {
         kakounePlugins.kakoune-vertical-selection
       ];
       config = {
-        colorScheme = "gruvbox";
+        colorScheme = "tomorrow-night";
         autoReload = "ask";
 
         alignWithTabs = false;
@@ -127,9 +127,10 @@ in {
             git clone -q https://github.com/andreyorst/plug.kak.git "$plugins/plug.kak"
             printf "%s\n" "source '$plugins/plug.kak/rc/plug.kak'"
         }
-        plug "andreyorst/plug.kak" noload      # Loads & Sources
+        plug "andreyorst/plug.kak" noload
+        # Loads & Sources
         # ────────────────────────────────────────────────────
-        source "%val{config}/kakrc.local"
+        # source "%val{config}/kakrc.local"
         require-module prelude
         require-module connect
         # Default Options
@@ -150,7 +151,7 @@ in {
         plug "https://github.com/alexherbo2/alacritty.kak" config %{
           alacritty-integration-enable
         }
-        plug "https://github.com/alexherbo2/lib.kak" config %{
+        plug "https://github.com/alexherbo2/tiny.kak" config %{
           enable-detect-indent
           enable-auto-indent
           set global disabled_hooks '(?!auto)(?!detect)\K(.+)-(trim-indent|insert|indent)'
@@ -169,20 +170,22 @@ in {
           map global normal b ': enter-buffers-mode<ret>' -docstring 'buffers'
           map global normal B ': enter-user-mode -lock buffers<ret>' -docstring 'buffers (lock)'
         }
+
         # Powerline
         # ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-        plug "https://github.com/andreyorst/powerline.kak" defer powerline %{
-          set-option global powerline_ignore_warnings true
-          set-option global powerline_format 'git line_column bufname smarttab mode_info filetype client session position'
-          set-option global powerline_separator ""
-          set-option global powerline_separator_thin ""
-        } defer powerline_bufname %{
-            set-option global powerline_shorten_bufname "short"
-        } defer powerline_gruvbox %{
-            powerline-theme gruvbox
-        } config %{
-            powerline-start
-        }
+        # plug "https://github.com/andreyorst/powerline.kak" defer powerline %{
+        #   set-option global powerline_ignore_warnings true
+        #   set-option global powerline_format 'git line_column bufname smarttab mode_info filetype client session position'
+        #   set-option global powerline_separator ""
+        #   set-option global powerline_separator_thin ""
+        # } defer powerline_bufname %{
+        #     set-option global powerline_shorten_bufname "short"
+        # } defer powerline_gruvbox %{
+        #     powerline-theme gruvbox
+        # } config %{
+        #     powerline-start
+        # }
+        
         # KakTreeFM
         # ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
         plug "https://github.com/andreyorst/kaktree" defer kaktree %{
