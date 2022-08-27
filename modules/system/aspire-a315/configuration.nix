@@ -80,7 +80,10 @@
 
   nixpkgs = {
     config = { allowUnfree = true; };
-    overlays = [ inputs.emacs-overlay.overlay ];
+    overlays = [ 
+      inputs.emacs-overlay.overlay
+      inputs.neovim-nightly-overlay.overlay 
+    ];
   }; # <<-- End Nixpkgs Section
 
   networking = {
@@ -158,11 +161,11 @@
   fonts = {
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      #(nerdfonts.override {
-      #  fonts = [
-      #    "RobotoMono"
-      #  ];
-      #})
+      (nerdfonts.override {
+       fonts = [
+         "RobotoMono"
+       ];
+      })
       dejavu_fonts
       emacs-all-the-icons-fonts
       fira-code

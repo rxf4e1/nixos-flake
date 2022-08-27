@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+
 {
   programs.alacritty = {
     enable = true;
@@ -6,11 +7,17 @@
       startup_mode = "Fullscreen";
       # background_opacity = 0.96;
       font = {
-        size = 10.0;
-        normal.family = "Terminus";
-        bold.family = "Terminus";
-        italic.family = "Terminus";
+        size = 8.5;
+        normal.family = "Overpass Mono";
+        bold.family = "Overpass Mono";
+        italic.family = "Overpass Mono";
       };
+      # font = {
+      #   size = 9.0;
+      #   normal.family = "RobotoMono Nerd Font Mono";
+      #   bold.family = "RobotoMono Nerd Font Mono";
+      #   italic.family = "RobotoMono Nerd Font Mono";
+      # };
       cursor.style = {
         shape = "Block";
         blinking = "On";
@@ -18,7 +25,7 @@
       window = {
         dimensions = {
           columns = 94; # 1366;
-          lines = 22;   #768;
+          lines = 22;   # 767;
         };
         # padding = {
         #   x = 0;
@@ -31,3 +38,4 @@
     }; # --- end settings
   };
 }
+

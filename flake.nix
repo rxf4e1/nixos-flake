@@ -5,17 +5,17 @@
 
     stable.url = "github:NixOS/nixpkgs/nixos-22.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-22.05";
     home-manager.inputs.nixpkgs.follows = "unstable";
     flake-utils.url = "github:numtide/flake-utils";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland.inputs.nixpkgs.follows = "unstable";
   
   };
 # ------------------------------------------------------------------------------
-  outputs = inputs @ {self, unstable, home-manager, emacs-overlay, flake-utils, ... }:
+  outputs = inputs @ {self, stable, unstable, home-manager, emacs-overlay, flake-utils, ... }:
     
     let
       devShells = flake-utils.lib.eachDefaultSystem (
@@ -36,7 +36,7 @@
     in {
       nixosConfigurations = {
         
-        aspire-a315 = unstable.lib.nixosSystem {
+        aspire-a315 = stable.lib.nixosSystem {
           system = "${system}";
           specialArgs = { inherit inputs; };
           modules = [
@@ -51,9 +51,11 @@
                 useUserPackages = true;
                 users.rxf4el = {
                   imports = [ ./modules/home-manager ];
-                  home.stateVersion = "22.11";
+                  home.stateVersion = "22.05";
+                  modules.kakoune.enable = true;
                 };
-              };    
+              };
+
             } # <<-- End Home-manager Section
 
             # HyprLand WindowManager

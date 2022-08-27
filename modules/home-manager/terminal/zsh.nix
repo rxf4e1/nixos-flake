@@ -20,7 +20,11 @@
         l = "ls -lF --time-style=long-iso --grid --icons";
         la = "ls -lha";
         tree = "ls --tree";
-        x = "sway";
+        ee = "emacsclient -c -a '' '$@'";
+        nv = "nvim";
+        vi = "nvim";
+        vim = "nvim";
+        x = "startx";
       };
       shellGlobalAliases = {
         G = "| egrep -e";
