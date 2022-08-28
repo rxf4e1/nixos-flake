@@ -10,6 +10,7 @@
     gimpPlugins.gmic
     imagemagickBig
     yt-dlp
+    leftwm
     # lutris
     # wine64
     # wine64Packages.fonts

@@ -5,7 +5,7 @@
     ./emacs.nix
     ./kakoune.nix
     ./nano.nix
-    ./neovim.nix
+    # ./neovim.nix
     # ./libreoffice.nix
   ];
 }

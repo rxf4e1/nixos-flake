@@ -80,7 +80,7 @@
     config = { allowUnfree = true; };
     overlays = [ 
       inputs.emacs-overlay.overlay
-      inputs.neovim-nightly-overlay.overlay 
+      # inputs.neovim-nightly-overlay.overlay 
     ];
   }; # <<-- End Nixpkgs Section
 
@@ -169,6 +169,7 @@
       fira-code
       fira-code-symbols
       liberation_ttf
+      meslo-lgs-nf
       overpass
       terminus_font
     ];

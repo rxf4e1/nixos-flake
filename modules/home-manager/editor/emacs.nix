@@ -8,5 +8,8 @@
     # extraPackages = epkgs: [
     #   epkgs.pdf-tools
     # ];
-  }; 
+  };
+  services.emacs = {
+    enable = true;
+  };
 }
