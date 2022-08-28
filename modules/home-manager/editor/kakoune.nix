@@ -41,19 +41,19 @@ in {
         scrollOff.columns = 3;
 
         numberLines = {
-          enable = true;
+          enable = false;
           relative = true;
           separator = ''" "''; # ⋮ ⦙ ⋅ ∘ ⌋ ∣
         };
 
         ui = {
           enableMouse = true;
-          assistant = "none";
+          # assistant = "none";
           statusLine = "bottom";
         };
 
         wrapLines = {
-          enable = false;
+          enable = true;
           indent = true;
           marker = "⎁";
         };
@@ -113,6 +113,13 @@ in {
             effect = ": vertical-selection-up-and-down<ret>";
             docstring = "vertical selection up and down";
           }
+
+          {
+            mode = "user";
+            key = "l";
+            effect = ": enter-user-mode lsp<ret>";
+            docstring	= "lsp";
+          }
         ];
 
       };
@@ -128,29 +135,34 @@ in {
             printf "%s\n" "source '$plugins/plug.kak/rc/plug.kak'"
         }
         plug "andreyorst/plug.kak" noload
+        
         # Loads & Sources
         # ────────────────────────────────────────────────────
-        # source "%val{config}/kakrc.local"
+        source "%val{config}/kakrc.local"
         require-module prelude
         require-module connect
+        
         # Default Options
         # ────────────────────────────────────────────────────
         set-option global makecmd 'make -j 8'
         set-option global grepcmd 'rg --column'
         set-option global ui_options terminal_assistant=none
+        
         # LSP Server
         # ────────────────────────────────────────────────────
         try %sh{
          kak-lsp --kakoune -s $kak_session
         }
+        
         # Auto-Pairs
         # ────────────────────────────────────────────────────
         plug "https://github.com/alexherbo2/auto-pairs.kak"
+        
         # Plugins
         # ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-        plug "https://github.com/alexherbo2/alacritty.kak" config %{
-          alacritty-integration-enable
-        }
+        # plug "https://github.com/alexherbo2/alacritty.kak" config %{
+        #   alacritty-integration-enable
+        # }
         plug "https://github.com/alexherbo2/tiny.kak" config %{
           enable-detect-indent
           enable-auto-indent
@@ -171,21 +183,6 @@ in {
           map global normal B ': enter-user-mode -lock buffers<ret>' -docstring 'buffers (lock)'
         }
 
-        # Powerline
-        # ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-        # plug "https://github.com/andreyorst/powerline.kak" defer powerline %{
-        #   set-option global powerline_ignore_warnings true
-        #   set-option global powerline_format 'git line_column bufname smarttab mode_info filetype client session position'
-        #   set-option global powerline_separator ""
-        #   set-option global powerline_separator_thin ""
-        # } defer powerline_bufname %{
-        #     set-option global powerline_shorten_bufname "short"
-        # } defer powerline_gruvbox %{
-        #     powerline-theme gruvbox
-        # } config %{
-        #     powerline-start
-        # }
-        
         # KakTreeFM
         # ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
         plug "https://github.com/andreyorst/kaktree" defer kaktree %{

@@ -1,5 +1,11 @@
 { config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+		# antibody
+		# zsh-powerlevel10k
+		meslo-lgs-nf
+  ];
+  
   programs.zsh = {
     enable = true;
       dotDir = ".config/zsh";
@@ -20,7 +26,6 @@
         l = "ls -lF --time-style=long-iso --grid --icons";
         la = "ls -lha";
         tree = "ls --tree";
-        ee = "emacsclient -c -a '' '$@'";
         nv = "nvim";
         vi = "nvim";
         vim = "nvim";
@@ -35,7 +40,7 @@
       };
       sessionVariables = {
         BROWSER="brave";
-        EDITOR="nano";
+        EDITOR="kak";
         VISUAL="emacs";
         PAGER="less";
       };
@@ -44,6 +49,8 @@
         export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
         export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border --margin=1 --padding=1"
         export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
+        # source <(antibody init)
+        # antibody bundle romkatv/powerlevel10k
       '';
   };
 }

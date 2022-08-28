@@ -19,4 +19,5 @@ in {
     programs.kakoune = {
       enable = true;
     };
+	};
 }

@@ -3,7 +3,7 @@
 {
   imports = [
     ./emacs.nix
-    ./kakoune2.nix
+    ./kakoune.nix
     ./nano.nix
     ./neovim.nix
     # ./libreoffice.nix

@@ -2,9 +2,7 @@
 
 {
   imports = [
-  #   ./hardware-configuration.nix
-  #   ./pkgs/macspoof.nix
-    ./virtualisation.nix
+    # ./virtualisation.nix
   ];
 
 
