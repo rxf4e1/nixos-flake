@@ -8,6 +8,4 @@
     ./terminal
     ./utils
   ];
-
-  modules.git.enable = true;
 }

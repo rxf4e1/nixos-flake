@@ -1,5 +1,5 @@
-{ pkgs, ... }:
-
+{ config, lib, pkgs, ... }:
+with lib;
 let
   # Fix any corruptions in the local copy.
   myGitFix = pkgs.writeShellScriptBin "git-fix" ''

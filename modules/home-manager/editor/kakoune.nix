@@ -163,12 +163,6 @@ in {
         # plug "https://github.com/alexherbo2/alacritty.kak" config %{
         #   alacritty-integration-enable
         # }
-        plug "https://github.com/alexherbo2/tiny.kak" config %{
-          enable-detect-indent
-          enable-auto-indent
-          set global disabled_hooks '(?!auto)(?!detect)\K(.+)-(trim-indent|insert|indent)'
-          make-directory-on-save
-        }
 
         # Buffers
         # ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
