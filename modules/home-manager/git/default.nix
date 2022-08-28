@@ -10,23 +10,35 @@ let
     fi
     exit 1
   '';
+
+  cfg = config.modules.git;
   
 in {
-  home.packages = [ myGitFix ];
-  
-  programs.git = {
-    enable = true;
-    userName = "rxf4el";
-    userEmail = "rxf4el@pm.me";
-    # signing = {
-    #   key = "FD141B6640DAD9D8";
-    #   signByDefault = true;
-    # };
+  options = {
+    modules.git = {
+      enable = mkOption {
+				type = types.bool;
+				default = true;
+      };
+    };
   };
 
-  programs.lazygit = {
-    enable = true;
-    # settings = {};
-  }; 
+  config = mkIf cfg.enable {
+  	home.packages = [ myGitFix ];
+  
+  	programs.git = {
+    	enable = true;
+    	userName = "rxf4el";
+   	 userEmail = "rxf4el@pm.me";
+   	 # signing = {
+   	 #   key = "FD141B6640DAD9D8";
+   	 #   signByDefault = true;
+   	 # };
+  	};
 
+  	programs.lazygit = {
+   	 enable = true;
+   	 # settings = {};
+  	}; 
+	};
 }
