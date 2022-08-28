@@ -1,4 +1,5 @@
-{ ... }:
+{ config, lib, pkgs, ... }:
+with lib;
 
 {
   imports = [
@@ -8,4 +9,9 @@
     ./terminal
     ./utils
   ];
+
+  modules = {
+    git.enable = true;
+    kakoune.enable = true;
+  };
 }
