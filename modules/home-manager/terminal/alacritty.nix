@@ -11,7 +11,7 @@ in {
       };
       font = {
         size = mkOption {
-          type = types.int.positive;
+          type = types.int;
           default = 10;
         };
         name = mkOption {
