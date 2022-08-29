@@ -159,25 +159,14 @@
   fonts = {
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      (nerdfonts.override {
-       fonts = [
-         "RobotoMono"
-       ];
-      })
-      dejavu_fonts
-      emacs-all-the-icons-fonts
-      fira-code
-      fira-code-symbols
       liberation_ttf
-      meslo-lgs-nf
       overpass
-      terminus_font
     ];
   }; # <<-- End fonts Section
 
   sound = {
     enable = true;
-    mediaKeys.enable = true;
+    mediaKeys.enable = false;
   };
   
   hardware = {
@@ -328,5 +317,4 @@
   system = {
     stateVersion = "22.05";
   };
-  
 }

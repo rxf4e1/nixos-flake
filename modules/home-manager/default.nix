@@ -14,6 +14,7 @@ with lib;
     audio.enable = true;
     browsers.enable = true;
     clitools.enable = true;
+    fonts.enable = true;
     git.enable = true;
     gtk.enable = true;
     kakoune.enable = true;
