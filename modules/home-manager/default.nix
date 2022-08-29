@@ -13,7 +13,7 @@ with lib;
   modules = {
     alacritty = {
       enable = true;
-      font.size = 9;
+      font.size = 8;
       font.name = "MesloLGS NF";
     };
     audio.enable = true;
