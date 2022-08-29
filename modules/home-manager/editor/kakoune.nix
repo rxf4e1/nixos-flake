@@ -35,7 +35,7 @@ in {
         indentWidth = 2;
 
         showMatching = true;
-        # showWhitespace.enable = true;
+        showWhitespace.enable = false;
 
         scrollOff.lines = 8;
         scrollOff.columns = 3;
@@ -118,7 +118,7 @@ in {
             mode = "user";
             key = "l";
             effect = ": enter-user-mode lsp<ret>";
-            docstring	= "lsp";
+            docstring = "lsp";
           }
         ];
 

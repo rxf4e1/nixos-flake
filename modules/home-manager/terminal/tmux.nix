@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-	cfg = config.modules.tmux;
+  cfg = config.modules.tmux;
 in {
   options = {
     modules.tmux = {
