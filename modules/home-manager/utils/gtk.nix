@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-	cfg = config.modules.gtk;
+  cfg = config.modules.gtk;
 in {
   options = {
     modules.gtk = {

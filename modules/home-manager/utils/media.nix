@@ -1,14 +1,14 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-	cfg = config.modules.media;
+  cfg = config.modules.media;
 in {
   options = {
     modules.media = {
-			enable = mkOption {
-				type = types.bool;
-				default = true;
-			};
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+      };
     };
   };
 
@@ -31,5 +31,5 @@ in {
         };
       };
     };
-	};
+  };
 }
