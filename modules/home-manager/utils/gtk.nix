@@ -1,14 +1,26 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+with lib;
+let
+	cfg = config.modules.gtk;
+in {
+  options = {
+    modules.gtk = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+      };
+    };
+  };
 
-{
-  home.packages = with pkgs; [
-    glib
-    lxappearance
-    matcha-gtk-theme
-    papirus-maia-icon-theme
-    capitaine-cursors
-    bibata-cursors-translucent
-  ];
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      glib
+      lxappearance-gtk2
+      matcha-gtk-theme
+      papirus-maia-icon-theme
+      bibata-cursors-translucent
+    ];
 
-  # home.file.".gtkrc-2.0".source = ../../../config/gtkrc-2.0;
+    # home.file.".gtkrc-2.0".source = ../../../config/gtkrc-2.0;
+  };
 }

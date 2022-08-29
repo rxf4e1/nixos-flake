@@ -13,7 +13,9 @@ with lib;
   modules = {
     audio.enable = true;
     browsers.enable = true;
+    clitools.enable = true;
     git.enable = true;
+    gtk.enable = true;
     kakoune.enable = true;
     media.enable = true;
   };
