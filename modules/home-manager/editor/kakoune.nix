@@ -120,6 +120,19 @@ in {
             effect = ": enter-user-mode lsp<ret>";
             docstring = "lsp";
           }
+
+          {
+            mode = "user";
+            key = "w";
+            effect = ": addhl buffer/ show-whitespaces";
+            docstring = "show whitespaces";
+          }
+          {
+            mode = "user";
+            key = "W";
+            effect = ": rmhl buffer/show-whitespaces";
+            docstring = "unshow whitespaces";
+          }
         ];
 
       };
