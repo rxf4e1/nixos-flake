@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-with lib;
 
 {
   imports = [
@@ -19,12 +18,13 @@ with lib;
     audio.enable = true;
     browsers.enable = true;
     clitools.enable = true;
-    # emacs.enable = true;
+    emacs.enable = true;
     fonts.enable = true;
     git.enable = true;
     gtk.enable = true;
     kakoune.enable = true;
     media.enable = true;
+    notify.enable = true;
     tmux.enable = true;
     zsh.enable = true;
   };
