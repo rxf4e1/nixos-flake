@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-	cfg = config.modules.clitools;
+  cfg = config.modules.clitools;
 in {
   options = {
     modules.clitools = {
@@ -23,6 +23,7 @@ in {
       procs
       ripgrep
       xcape
+      weechat
     ];
 
     xdg = {
