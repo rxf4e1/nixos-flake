@@ -18,8 +18,9 @@ in {
     poppler
     zathura
     zotero
+    
     # Chat
     pidgin
-    irssi
+    weechat
   ];
 }
