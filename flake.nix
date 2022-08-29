@@ -60,7 +60,7 @@
             # HyprLand WindowManager
             # inputs.hyprland.nixosModules.default { 
             #   imports = [ ./modules/desktop ]; 
-	          # } 
+            # } 
             # { programs.hyprland.enable = true; }
           ];
         };
