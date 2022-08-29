@@ -11,7 +11,10 @@ with lib;
   ];
 
   modules = {
+    audio.enable = true;
+    browsers.enable = true;
     git.enable = true;
     kakoune.enable = true;
+    media.enable = true;
   };
 }

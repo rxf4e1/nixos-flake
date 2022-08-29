@@ -52,10 +52,6 @@
                 users.rxf4el = {
                   imports = [ ./modules/home-manager ];
                   home.stateVersion = "22.05";
-                  # modules = {
-                  #   git.enable = true;
-                  #   kakoune.enable = true;
-                  # };
                 };
               };
 
