@@ -2,7 +2,7 @@
 let
   
   latex = pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-medium
+    inherit (pkgs.texlive) scheme-basic
       wrapfig capt-of preview lxfonts latexmk
       natbib biblatex biblatex-abnt fourier xpatch
       ctex xetex minted fvextra amsmath upquote catchfile
@@ -15,9 +15,11 @@ in {
     # libreoffice-bin
     # onlyoffice-bin
     pcmanfm
-    # mupdf
     poppler
-    # zathura
+    zathura
     zotero
+    # Chat
+    pidgin
+    irssi
   ];
 }

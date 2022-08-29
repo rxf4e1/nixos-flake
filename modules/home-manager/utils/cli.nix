@@ -23,7 +23,6 @@ in {
       procs
       ripgrep
       xcape
-      weechat
     ];
 
     xdg = {
