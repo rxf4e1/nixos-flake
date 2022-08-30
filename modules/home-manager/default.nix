@@ -11,7 +11,7 @@
 
   modules = {
     alacritty = {
-      enable = true;
+      enable = false;
       font.size = 8;
       font.name = "MesloLGS NF";
     };
@@ -23,6 +23,7 @@
     git.enable = true;
     gtk.enable = true;
     kakoune.enable = true;
+    kitty.enable = true;
     media.enable = true;
     notify.enable = true;
     tmux.enable = true;
