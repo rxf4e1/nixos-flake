@@ -10,6 +10,15 @@ in {
         type = types.bool;
         default = true;
       };
+      withWayland = {
+        enable = mkEnableOption "Enable when wayland" // {
+          default = true;
+        };
+        display = mkOption {
+          type = types.str;
+          default = "WAYLAND_DISPLAY";
+        };
+      };
     };
   };
 
@@ -20,7 +29,7 @@ in {
       
     services.dunst = {
       enable = true;
-      # waylandDisplay = "WAYLAND_DISPLAY";
+      waylandDisplay = cfg.withWayland.display;
       settings = {
         global = {
           transparency = 10;
@@ -28,7 +37,7 @@ in {
           font = "Terminus 10";
         };
         urgency_normal = {
-          timeout = 0;
+          timeout = 20;
         };
       };
     };
@@ -36,7 +45,7 @@ in {
     # home.file."dustrc".source = "${XDG_CONFIG_HOME}/dunst/dunstrc";
 
     programs.mako = {
-      enable = false;
+      enable = cfg.withWayland.enable;
       package = pkgs.mako;
       actions = true;
       anchor = "bottom-right";

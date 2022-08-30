@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+with lib;
 let
   
   latex = pkgs.texlive.combine {
@@ -8,19 +9,34 @@ let
       ctex xetex minted fvextra amsmath upquote catchfile
       xstring framed dvipng hanging;
   };
+
+  cfg = config.modules.office;
   
 in {
-  home.packages = with pkgs; [
-    # latex
-    # libreoffice-bin
-    # onlyoffice-bin
-    pcmanfm
-    poppler
-    zathura
-    zotero
+  options = {
+    modules.office = {
+      enable = mkEnableOption "Enable office tools";
+    };
+  };
 
-    # Chat
-    pidgin
-    weechat
-  ];
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      # Academic
+      # latex
+      zotero
+      
+      # Sheets
+      # libreoffice-bin
+
+      # File-Management
+      pcmanfm
+
+      # Viewers
+      poppler
+      zathura
+
+      # Chat
+      pidgin
+    ];
+  };
 }

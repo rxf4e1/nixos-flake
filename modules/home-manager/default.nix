@@ -26,6 +26,7 @@
     kitty.enable = true;
     media.enable = true;
     notify.enable = true;
+    office.enable = true;
     tmux.enable = true;
     zsh.enable = true;
   };
