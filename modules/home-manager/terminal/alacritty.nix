@@ -48,10 +48,7 @@ in {
         mouse.hide_when_typing = true;
       };
     };
-
-    home.packages = with pkgs; [
-      kitty
-    ];
+    home.packages = with pkgs; [ kitty ];
   };
 }
 

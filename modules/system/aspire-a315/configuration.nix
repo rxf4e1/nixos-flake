@@ -77,7 +77,12 @@
   }; # <<-- End Nix Section
 
   nixpkgs = {
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-18.1.0"
+      ];
+    };
     overlays = [ 
       inputs.emacs-overlay.overlay
       # inputs.neovim-nightly-overlay.overlay 

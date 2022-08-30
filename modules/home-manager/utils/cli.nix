@@ -23,7 +23,7 @@ in {
       procs
       ripgrep
       xcape
-      xclip
+      xsel
     ];
 
     xdg = {

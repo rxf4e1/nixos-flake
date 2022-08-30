@@ -27,8 +27,8 @@ in {
         set -g status off
         set -g visual-activity on
         set -g mouse on
-        set -g default-terminal "screen-256color"
-        set-option -sa terminal-overrides ",xterm-kitty:RGB"
+        set -g default-terminal 'tmux-256color'
+        set-option -sa terminal-overrides ',xterm-kitty:Tc'
       '';
     };
   };
