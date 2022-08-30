@@ -20,6 +20,7 @@ in {
       enable = true;
       plugins = with pkgs; [
         kak-lsp
+        kakounePlugins.active-window-kak
         kakounePlugins.prelude-kak
         kakounePlugins.connect-kak
         kakounePlugins.kakoune-buffers

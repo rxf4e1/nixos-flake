@@ -28,7 +28,8 @@ in {
         set -g visual-activity on
         set -g mouse on
         set -g default-terminal 'tmux-256color'
-        set-option -sa terminal-overrides ',xterm-kitty:Tc'
+        set-option -sa terminal-features ',xterm-kitty:RGB'
+        set-option -g focus-events on
       '';
     };
   };
