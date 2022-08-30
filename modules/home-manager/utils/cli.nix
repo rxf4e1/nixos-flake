@@ -69,6 +69,9 @@ in {
       fzf = {
         enable = true;
         enableZshIntegration = true;
+        enableBashIntegration = true;
+        tmux.enableShellIntegration = true;
+        tmux.shellIntegrationOptions = [ "-d 30%" ];
         changeDirWidgetCommand = "fd --color=auto --type=d";
         changeDirWidgetOptions = [ "--preview 'exa --tree --color=always -L 4 {}'" ];
         defaultCommand = "fd --color=auto";
