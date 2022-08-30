@@ -23,8 +23,9 @@ in
       meslo-lgs-nf
       # nerdFonts
       terminus_font
+      font-manager
     ];
     
-  	fonts.fontconfig.enable = true;
+    fonts.fontconfig.enable = true;
   };
 }

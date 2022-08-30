@@ -24,7 +24,7 @@ in {
 
   config = mkIf cfg.enable {
     programs.alacritty = {
-      enable = true;
+      enable = false;
       settings = {
         startup_mode = "Fullscreen";
         # background_opacity = 0.96;
@@ -48,6 +48,10 @@ in {
         mouse.hide_when_typing = true;
       };
     };
+
+    home.packages = with pkgs; [
+      kitty
+    ];
   };
 }
 

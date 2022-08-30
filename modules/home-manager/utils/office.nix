@@ -18,7 +18,7 @@ in {
     poppler
     zathura
     zotero
-    
+
     # Chat
     pidgin
     weechat

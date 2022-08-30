@@ -33,7 +33,9 @@ let
 in {
 
   services.xserver.windowManager.openbox.enable = true;
-  
+
+  environment.enableAllTerminfo = true;
+
   environment.systemPackages = with pkgs; [
     dbus-openbox-environment
     configure-gtk

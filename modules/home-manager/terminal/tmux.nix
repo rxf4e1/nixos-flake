@@ -16,7 +16,6 @@ in {
     programs.tmux = {
       enable = true;
       prefix = "C-a";
-      terminal = "xterm-256color";
       keyMode = "emacs";
       baseIndex = 1;
       aggressiveResize = true;
@@ -28,6 +27,8 @@ in {
         set -g status off
         set -g visual-activity on
         set -g mouse on
+        set -g default-terminal "screen-256color"
+        set-option -sa terminal-overrides ",xterm-kitty:RGB"
       '';
     };
   };
