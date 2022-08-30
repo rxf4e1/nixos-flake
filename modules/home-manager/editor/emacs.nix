@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-	cfg = config.modules.emacs;
+  cfg = config.modules.emacs;
 in {
   options = {
     modules.emacs = {
@@ -21,8 +21,8 @@ in {
       #   epkgs.pdf-tools
       # ];
     };
-    services.emacs = {
-      enable = true;
-    };
+    # services.emacs = {
+    #   enable = true;
+    # };
   };
 }

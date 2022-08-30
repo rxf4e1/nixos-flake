@@ -44,7 +44,7 @@ in {
           x = "startx";
         };
         shellGlobalAliases = {
-          G = "| egrep -e";
+          G = "| rg -e";
         };
         dirHashes = {
           dl = "$HOME/Downloads";
