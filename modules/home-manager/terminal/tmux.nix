@@ -30,6 +30,8 @@ in {
         set -g default-terminal 'tmux-256color'
         set-option -sa terminal-features ',xterm-kitty:RGB'
         set-option -g focus-events on
+
+        source-file ~/.config/tmux/themes/tomorrow_night_bright.tmux
       '';
     };
   };

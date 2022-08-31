@@ -29,7 +29,7 @@ in {
       
     services.dunst = {
       enable = true;
-      waylandDisplay = cfg.withWayland.display;
+      # waylandDisplay = cfg.withWayland.display;
       settings = {
         global = {
           transparency = 10;

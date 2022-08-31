@@ -113,11 +113,6 @@
       # allowedTCPPorts = [ ... ];
       # allowedUDPPorts = [ ... ];
     };
-    # proxy = {
-    #   default = "http://user:password@proxy:port/";
-    #   noProxy = "127.0.0.1,localhost,internal.domain";
-    # };
-    
   }; # <<-- End networking Section
 
   # Set your time zone.
@@ -240,9 +235,9 @@
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
-      jack.enable = true;
+      # jack.enable = true;
       pulse.enable = true;
-      socketActivation = true;
+      # socketActivation = true;
     };
 
     tlp.enable = true;
