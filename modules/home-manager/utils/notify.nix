@@ -12,7 +12,7 @@ in {
       };
       withWayland = {
         enable = mkEnableOption "Enable when wayland" // {
-          default = true;
+          default = false;
         };
         display = mkOption {
           type = types.str;
