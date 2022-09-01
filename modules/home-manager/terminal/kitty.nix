@@ -41,12 +41,19 @@ in {
         enable_audio_bell = false;
         update_check_interval = 0;
 
+        cursor_shape = "underline";
+        cursor_underline_thickness = "2.0";
+        cursor_blink_interval = -1;
+        cursor_stop_blinking_after = 0;
+
         mouse_hide_wait = -1;
         copy_on_select = true;
 
         repaint_delay = 10;
         input_delay = 1;
         sync_to_monitor = true;
+
+        hide_window_decorations = true;
       };
       extraConfig = ''
         
