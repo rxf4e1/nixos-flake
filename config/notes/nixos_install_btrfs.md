@@ -2,7 +2,7 @@
 
 ## USE SGDISK AS PARTITIONER
 ### How to use
-  - $ sgdisk [options] <device>
+  - $ sgdisk [options] \<device\>
 
 ### My Use Case
   1. Delete all existing partitions
@@ -29,9 +29,7 @@
     - $ sgdisk -n2:0:800 -t2:8300 -c 2:ROOT $disk
 
 ## ENCRYPT ROOT
-  - $ cryptsetup -verify-passphrase \
-      -cipher serpent-cbc-essiv:sha256 \
-      -key-size 256 luksFormat $disk-part3
+  - $ cryptsetup -verify-passphrase -cipher serpent-cbc-essiv:sha256 -key-size 256 luksFormat $disk-part3
   - $ cryptsetup open $disk-part3 enc
 
 ## FORMATTING
