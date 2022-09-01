@@ -31,7 +31,7 @@ in {
         set-option -sa terminal-features ',xterm-kitty:RGB'
         set-option -g focus-events on
 
-        source-file ~/.config/tmux/themes/tomorrow_night_bright.tmux
+        # source-file ~/.config/tmux/themes/tomorrow_night_bright.tmux
       '';
     };
   };

@@ -26,7 +26,7 @@ in {
     programs.kitty = {
       enable = true;
       package = pkgs.kitty;
-      theme = "Tomorrow Night";
+      # theme = "";
       environment = {};
       font = {
         name = cfg.font.name;
@@ -53,6 +53,10 @@ in {
         input_delay = 1;
         sync_to_monitor = true;
 
+        window_border_width = "0.2pt";
+        window_margin_width = 0;
+        single_window_margin_width = -1;
+        draw_minimal_borders = true;
         hide_window_decorations = true;
       };
       extraConfig = ''
