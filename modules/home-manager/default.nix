@@ -10,11 +10,6 @@
   ];
 
   modules = {
-    alacritty = {
-      enable = false;
-      font.size = 8;
-      font.name = "MesloLGS NF";
-    };
     audio.enable = true;
     browsers.enable = true;
     clitools.enable = true;
@@ -23,7 +18,11 @@
     git.enable = true;
     gtk.enable = true;
     kakoune.enable = true;
-    kitty.enable = true;
+    kitty = {
+      enable = true;
+      font.name = "Terminus";
+      font.size = 9;
+    };
     media.enable = true;
     notify.enable = true;
     office.enable = true;
