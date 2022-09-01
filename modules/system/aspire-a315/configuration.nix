@@ -7,11 +7,15 @@
 
 
   # Use the systemd-boot EFI boot loader.
-  boot = { 
+  boot = {
+    # kernelPackages = pkgs.linuxPackages_latest;
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+
+    # supportedFilesystems = [ "btrfs" ];
     
     blacklistedKernelModules = [
       "kvm_intel"
