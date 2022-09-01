@@ -15,7 +15,7 @@
       efi.canTouchEfiVariables = true;
     };
 
-    # supportedFilesystems = [ "btrfs" ];
+    # supportedFilesystems = [ "btrfs" "bcachefs" ];
     
     blacklistedKernelModules = [
       "kvm_intel"
